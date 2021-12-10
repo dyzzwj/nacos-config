@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dyzwj.nacosconfig.mapper.CategoryMapper" >
+
+
+    <select id="selectDynamic" resultType="com.dyzwj.nacosconfig.entity.CategoryPO">
+        SELECT *
+        FROM `cate_info`
+        WHERE id IN (
+            SELECT DISTINCT(b.id)
+            FROM (
+                     SELECT *
+                     FROM `cate_info`
+                     WHERE cate_name LIKE CONCAT('%',#{name},'%')) a
+                     INNER JOIN `cate_info` b
+            WHERE FIND_IN_SET(b.id,a.cate_parent_ids)
+        )
+    </select>
+
+
+</mapper>
