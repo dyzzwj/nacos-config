@@ -7,13 +7,15 @@
         SELECT *
         FROM `cate_info`
         WHERE id IN (
-            SELECT DISTINCT(b.id)
+            SELECT DISTINCT b.id
             FROM (
                      SELECT *
                      FROM `cate_info`
-                     WHERE cate_name LIKE CONCAT('%',#{name},'%')) a
+                     WHERE cate_name LIKE CONCAT('%', #{name}, '%')
+                 ) a
                      INNER JOIN `cate_info` b
-            WHERE FIND_IN_SET(b.id,a.cate_parent_ids)
+            WHERE FIND_IN_SET(b.id, a.cate_parent_ids)
+               OR b.id = a.id
         )
     </select>
 

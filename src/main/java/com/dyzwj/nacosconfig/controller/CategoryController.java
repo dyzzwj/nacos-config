@@ -1,8 +1,6 @@
 package com.dyzwj.nacosconfig.controller;
 
 import com.dyzwj.nacosconfig.dto.CategoryDto;
-import com.dyzwj.nacosconfig.entity.CategoryPO;
-import com.dyzwj.nacosconfig.mapper.CategoryMapper;
 import com.dyzwj.nacosconfig.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
